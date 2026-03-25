@@ -3,19 +3,20 @@ import Link from "next/link";
 import { GitHubFab } from "@/components/landing/GitHubFab";
 import { LandingNavDesktop, LandingNavMobile } from "@/components/landing/LandingNav";
 import { ADVANCED_DAYS, ADVANCED_OVERVIEW } from "@/lib/curriculum-advanced";
+import { IMPORTS_DAYS, IMPORTS_OVERVIEW } from "@/lib/curriculum-imports";
 import { STANDARD_DAYS, STANDARD_OVERVIEW } from "@/lib/curriculum-standard";
 import { GITHUB_REPO_URL } from "@/lib/site";
 
 const features = [
   {
-    title: "Dual 7-day tracks",
-    desc: "Standard (4–6h/day) and Advanced (5–7h/day) with objectives, exercises, and deliverables per day.",
+    title: "Three 7-day tracks",
+    desc: "Standard, Advanced (OBBBA & optimization), and Import mastery (maximize TurboTax Desktop auto-imports).",
     accent: "from-cyan-500/30 to-blue-600/20",
     icon: "📅",
   },
   {
     title: "Prompt playbook",
-    desc: "19 standard + 16 advanced copy-paste prompts; clipboard adds the required educational disclaimer.",
+    desc: "19 standard + 16 advanced + 11 import-focused prompts; clipboard adds the track disclaimer.",
     accent: "from-fuchsia-500/30 to-purple-600/20",
     icon: "✨",
   },
@@ -115,6 +116,12 @@ export default function HomePage() {
                   Open advanced track
                 </Link>
                 <Link
+                  href="/curriculum/imports"
+                  className="inline-flex items-center justify-center rounded-xl border border-sky-500/35 bg-sky-500/10 px-6 py-3 text-sm font-semibold text-sky-100 backdrop-blur-sm transition hover:bg-sky-500/20"
+                >
+                  Import mastery track
+                </Link>
+                <Link
                   href={GITHUB_REPO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -179,7 +186,10 @@ export default function HomePage() {
                 ))}
               </div>
               <p className="mt-8 max-w-3xl text-sm leading-relaxed text-zinc-500">
-                Daily rhythm: morning scenarios → midday TurboTax + LLMs → evening compare outputs across all three models.
+                Daily rhythm: morning scenarios → midday TurboTax + LLMs → evening compare outputs across all three
+                models. The <strong className="text-zinc-300">import mastery</strong> track adds anonymized W-2/1099-B
+                samples, bank exports, and a prior-year <code className="rounded bg-white/10 px-1">.tax</code> file for
+                carryover drills.
               </p>
             </div>
           </section>
@@ -192,7 +202,7 @@ export default function HomePage() {
             <div className="mx-auto max-w-6xl">
               <h2 className="text-sm font-semibold uppercase tracking-widest text-amber-400/90">Tracks</h2>
               <p className="mt-2 text-3xl font-bold text-white">Pick your intensity</p>
-              <div className="mt-10 grid gap-6 lg:grid-cols-2">
+              <div className="mt-10 grid gap-6 lg:grid-cols-3">
                 <div className="rounded-3xl border border-cyan-500/20 bg-gradient-to-b from-cyan-500/10 to-transparent p-8">
                   <h3 className="text-xl font-bold text-white">Standard</h3>
                   <p className="mt-3 text-sm leading-relaxed text-zinc-400">{STANDARD_OVERVIEW.audience.slice(0, 280)}…</p>
@@ -227,6 +237,26 @@ export default function HomePage() {
                     className="mt-8 inline-flex rounded-xl bg-fuchsia-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-fuchsia-500"
                   >
                     Advanced overview →
+                  </Link>
+                </div>
+                <div className="rounded-3xl border border-sky-500/25 bg-gradient-to-b from-sky-500/10 to-transparent p-8 lg:col-span-1">
+                  <h3 className="text-xl font-bold text-white">Import mastery</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-400">
+                    {IMPORTS_OVERVIEW.framing.slice(0, 220)}…
+                  </p>
+                  <ul className="mt-6 space-y-2 text-sm text-zinc-300">
+                    {IMPORTS_OVERVIEW.targetOutcomes.slice(0, 3).map((o) => (
+                      <li key={o} className="flex gap-2">
+                        <span className="text-sky-400">✓</span>
+                        {o}
+                      </li>
+                    ))}
+                  </ul>
+                  <Link
+                    href="/curriculum/imports"
+                    className="mt-8 inline-flex rounded-xl bg-sky-500 px-5 py-2.5 text-sm font-semibold text-zinc-950 hover:bg-sky-400"
+                  >
+                    Import track overview →
                   </Link>
                 </div>
               </div>
@@ -297,6 +327,40 @@ export default function HomePage() {
             </div>
           </section>
 
+          {/* Import mastery week */}
+          <section
+            id="imports-week"
+            className="scroll-mt-24 border-b border-white/10 px-4 py-16 sm:px-6 sm:py-20"
+          >
+            <div className="mx-auto max-w-6xl">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-sky-400/90">
+                Import mastery · 7 days
+              </h2>
+              <p className="mt-2 text-3xl font-bold text-white">TurboTax Desktop imports &amp; Smart Check</p>
+              <ol className="mt-10 space-y-3">
+                {IMPORTS_DAYS.map((d) => (
+                  <li key={d.day}>
+                    <Link
+                      href={`/curriculum/imports/day/${d.day}`}
+                      className="flex flex-col gap-1 rounded-2xl border border-white/10 bg-zinc-900/30 p-4 transition hover:border-sky-500/40 hover:bg-zinc-900/50 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sky-500/25 text-sm font-bold text-sky-200">
+                          {d.day}
+                        </span>
+                        <div>
+                          <p className="font-semibold text-white">{d.title}</p>
+                          <p className="mt-1 text-xs text-zinc-500">{d.focus}</p>
+                        </div>
+                      </div>
+                      <span className="shrink-0 text-xs font-medium text-sky-400/90">View day →</span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </section>
+
           {/* Prompts */}
           <section
             id="prompts"
@@ -305,7 +369,7 @@ export default function HomePage() {
             <div className="mx-auto max-w-6xl">
               <h2 className="text-sm font-semibold uppercase tracking-widest text-pink-400/90">Prompt libraries</h2>
               <p className="mt-2 text-3xl font-bold text-white">Copy, paste, verify</p>
-              <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              <div className="mt-10 grid gap-6 md:grid-cols-3">
                 <Link
                   href="/prompts/standard"
                   className="rounded-3xl border border-pink-500/25 bg-gradient-to-br from-pink-500/15 to-transparent p-8 transition hover:border-pink-400/50"
@@ -324,6 +388,17 @@ export default function HomePage() {
                   <p className="mt-2 text-sm text-zinc-400">OBBBA depth, QBI, multi-year models, scaling prompts.</p>
                   <span className="mt-6 inline-block text-sm font-medium text-purple-300">Open library →</span>
                 </Link>
+                <Link
+                  href="/prompts/imports"
+                  className="rounded-3xl border border-sky-500/30 bg-gradient-to-br from-sky-500/15 to-transparent p-8 transition hover:border-sky-400/55"
+                >
+                  <p className="text-4xl font-black text-white">11</p>
+                  <p className="mt-2 font-semibold text-white">Import mastery prompts</p>
+                  <p className="mt-2 text-sm text-zinc-400">
+                    W-2/1099-B imports, rental pulls, Federal Review/Smart Check, orchestration.
+                  </p>
+                  <span className="mt-6 inline-block text-sm font-medium text-sky-300">Open library →</span>
+                </Link>
               </div>
               <div className="mt-6 text-center">
                 <Link href="/prompts" className="text-sm font-medium text-zinc-400 underline-offset-4 hover:text-white hover:underline">
@@ -341,7 +416,7 @@ export default function HomePage() {
             <div className="mx-auto max-w-6xl">
               <h2 className="text-sm font-semibold uppercase tracking-widest text-orange-400/90">2025–2026 context</h2>
               <p className="mt-2 text-3xl font-bold text-white">What the cohort stresses</p>
-              <div className="mt-10 grid gap-8 lg:grid-cols-2">
+              <div className="mt-10 grid gap-8 lg:grid-cols-3">
                 <div className="rounded-2xl border border-white/10 bg-zinc-900/40 p-6">
                   <h3 className="font-semibold text-white">Standard focal points</h3>
                   <ul className="mt-4 space-y-3 text-sm text-zinc-400">
@@ -357,6 +432,16 @@ export default function HomePage() {
                   <ul className="mt-4 space-y-3 text-sm text-zinc-400">
                     {ADVANCED_OVERVIEW.contextMarch2026.map((x) => (
                       <li key={x} className="border-l-2 border-amber-500/50 pl-3">
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rounded-2xl border border-sky-500/20 bg-zinc-900/40 p-6">
+                  <h3 className="font-semibold text-white">Import track — Desktop realities</h3>
+                  <ul className="mt-4 space-y-3 text-sm text-zinc-400">
+                    {IMPORTS_OVERVIEW.importRealitiesMarch2026.map((x) => (
+                      <li key={x} className="border-l-2 border-sky-500/50 pl-3">
                         {x}
                       </li>
                     ))}

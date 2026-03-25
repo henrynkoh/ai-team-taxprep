@@ -1,4 +1,4 @@
-export type CurriculumTrack = "standard" | "advanced";
+export type CurriculumTrack = "standard" | "advanced" | "imports";
 
 export type CurriculumDay = {
   day: number;

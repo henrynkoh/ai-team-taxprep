@@ -51,11 +51,12 @@ seattle-tax-curriculum/
 | `/` | Landing: positioning, daily rhythm, cards to tracks |
 | `/curriculum/standard` | Standard track overview, days list, post-week summary |
 | `/curriculum/advanced` | Advanced track overview, days list, post-week summary |
-| `/curriculum/standard/day/[1–7]` | Single day: objectives, exercises, deliverables |
-| `/curriculum/advanced/day/[1–7]` | Same for advanced |
-| `/prompts` | Hub linking standard and advanced libraries |
+| `/curriculum/imports` | Import mastery (TurboTax auto-imports), days, post-week |
+| `/curriculum/{track}/day/[1–7]` | Single day (`track` = standard \| advanced \| imports) |
+| `/prompts` | Hub linking all prompt libraries |
 | `/prompts/standard` | 19 prompts, per-prompt copy + copy-all |
 | `/prompts/advanced` | 16 prompts, per-prompt copy + copy-all |
+| `/prompts/imports` | 11 import-focused prompts + copy-all |
 | `/context-2025` | Consolidated 2025–2026 context bullets |
 | `/post-week` | Post-week actions for each cohort |
 
@@ -65,11 +66,14 @@ seattle-tax-curriculum/
 
 | File | Role |
 |------|------|
-| `disclaimer.ts` | Site footer text; standard vs advanced **prompt suffix** appended on copy |
+| `disclaimer.ts` | Site footer text; **prompt suffix** per track (standard / advanced / imports) on copy |
 | `types.ts` | `CurriculumTrack`, `CurriculumDay`, `PromptItem` |
 | `curriculum-standard.ts` | Standard overview + 7 days + post-week list |
 | `curriculum-advanced.ts` | Advanced overview + 7 days + post-week list |
+| `curriculum-imports.ts` | Import-maximization track (TurboTax imports) |
 | `curriculum.ts` | `getCurriculum()`, `getDay()`, `isTrack()` |
+| `prompts-imports.ts` | Import-focused prompt library (11 prompts) |
+| `track-ui.ts` | Page headings, breadcrumb labels, prompt paths per track |
 | `prompts-standard.ts` | Standard prompt bodies (IDs 1–19) |
 | `prompts-advanced.ts` | Advanced prompt bodies (IDs 1–16) |
 

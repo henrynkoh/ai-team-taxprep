@@ -2,19 +2,25 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getCurriculum, isTrack } from "@/lib/curriculum";
+import { curriculumPageHeading, promptPathForTrack } from "@/lib/track-ui";
 import type { CurriculumTrack } from "@/lib/types";
 
 type Props = { params: Promise<{ track: string }> };
 
+const META_TITLE: Record<CurriculumTrack, string> = {
+  standard: "Standard track",
+  advanced: "Advanced track",
+  imports: "Import mastery track",
+};
+
 export function generateStaticParams() {
-  return [{ track: "standard" }, { track: "advanced" }];
+  return [{ track: "standard" }, { track: "advanced" }, { track: "imports" }];
 }
 
 export async function generateMetadata({ params }: Props) {
   const { track: raw } = await params;
   if (!isTrack(raw)) return { title: "Not found" };
-  const t = raw === "advanced" ? "Advanced track" : "Standard track";
-  return { title: t };
+  return { title: META_TITLE[raw] };
 }
 
 function OverviewSection({ track }: { track: CurriculumTrack }) {
@@ -24,6 +30,9 @@ function OverviewSection({ track }: { track: CurriculumTrack }) {
     audience: string;
     toolConstraint?: string;
     framing?: string;
+    llmIntegration?: string;
+    importNarrowing?: string[];
+    importRealitiesMarch2026?: string[];
     targetOutcomes: string[];
     dailyRhythm?: string[];
     dailyHours?: string;
@@ -44,10 +53,39 @@ function OverviewSection({ track }: { track: CurriculumTrack }) {
       {"framing" in base && base.framing ? (
         <p className="mt-3 text-sm text-zinc-400">{base.framing}</p>
       ) : null}
+      {"importNarrowing" in base && base.importNarrowing?.length ? (
+        <>
+          <h3 className="mt-6 text-sm font-semibold uppercase tracking-wide text-sky-500/90">
+            TurboTax import scope
+          </h3>
+          <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-zinc-400">
+            {base.importNarrowing.map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+        </>
+      ) : null}
+      {"importRealitiesMarch2026" in base && base.importRealitiesMarch2026?.length ? (
+        <>
+          <h3 className="mt-6 text-sm font-semibold uppercase tracking-wide text-amber-500/90">
+            Key 2025/2026 import realities (March 2026)
+          </h3>
+          <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-zinc-400">
+            {base.importRealitiesMarch2026.map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+        </>
+      ) : null}
+      {"llmIntegration" in base && base.llmIntegration ? (
+        <p className="mt-4 text-sm text-zinc-300">
+          <strong className="text-white">LLM integration:</strong> {base.llmIntegration}
+        </p>
+      ) : null}
 
       <p className="mt-4 text-sm text-zinc-300">
         <strong className="text-white">Cadence:</strong>{" "}
-        {track === "advanced" && base.dailyHours ? base.dailyHours : "4–6 hours/day (standard cohort)"}
+        {track === "standard" ? "4–6 hours/day (standard cohort)" : base.dailyHours ?? "5–7 hours/day"}
       </p>
 
       <h3 className="mt-6 text-sm font-semibold uppercase tracking-wide text-zinc-500">Target outcomes</h3>
@@ -88,7 +126,7 @@ export default async function CurriculumTrackPage({ params }: Props) {
   if (!isTrack(raw)) notFound();
   const track = raw;
   const { days, postWeek } = getCurriculum(track);
-  const linkPrompts = track === "advanced" ? "/prompts/advanced" : "/prompts/standard";
+  const linkPrompts = promptPathForTrack(track);
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
@@ -96,7 +134,7 @@ export default async function CurriculumTrackPage({ params }: Props) {
         ← Home
       </Link>
       <h1 className="mt-4 text-2xl font-semibold text-white sm:text-3xl">
-        {track === "advanced" ? "Advanced curriculum" : "Standard curriculum"}
+        {curriculumPageHeading(track)}
       </h1>
       <p className="mt-2 text-sm text-zinc-400">
         Seven days · objectives, exercises, and deliverables ·{" "}

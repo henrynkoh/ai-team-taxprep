@@ -9,6 +9,7 @@ export const LANDING_NAV = [
   { id: "tracks", label: "Tracks" },
   { id: "standard-week", label: "Standard · 7 days" },
   { id: "advanced-week", label: "Advanced · 7 days" },
+  { id: "imports-week", label: "Imports · 7 days" },
   { id: "prompts", label: "Prompts" },
   { id: "context", label: "2025 context" },
   { id: "resources", label: "Docs & marketing" },

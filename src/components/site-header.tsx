@@ -4,6 +4,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/curriculum/standard", label: "Standard" },
   { href: "/curriculum/advanced", label: "Advanced" },
+  { href: "/curriculum/imports", label: "Imports" },
   { href: "/prompts", label: "Prompts" },
   { href: "/context-2025", label: "2025 context" },
   { href: "/post-week", label: "Post-week" },

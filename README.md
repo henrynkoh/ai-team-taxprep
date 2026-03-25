@@ -1,6 +1,6 @@
 # Seattle Combo Tax Curriculum
 
-Next.js 16 app that hosts the **standard** and **advanced** 7-day programs for greater–Seattle tax consultants working complex **single-filer** returns (W-2/RSU, Airbnb STR, AFH, OBBBA bonus depreciation, TurboTax Desktop) with **Claude, ChatGPT, and Gemini** only.
+Next.js 16 app that hosts **three** 7-day programs for greater–Seattle tax consultants: **standard**, **advanced** (optimization / OBBBA), and **import mastery** (maximize TurboTax Desktop automatic imports + Federal Review/Smart Check). Same niche: complex **single-filer** returns with **Claude, ChatGPT, and Gemini** only beside TurboTax Desktop.
 
 ---
 
@@ -18,7 +18,7 @@ Next.js 16 app that hosts the **standard** and **advanced** 7-day programs for g
 
 ## Landing page (`/`)
 
-The home page is a **single-scroll overview**: gradient hero, feature grid, tool stack, both tracks, all **14 day rows** with links, prompt stats, 2025 context bullets, and deep links to `docs/` on GitHub.
+The home page is a **single-scroll overview**: gradient hero, feature grid, tool stack, **three** tracks, all **21 day rows** with links, prompt stats (19 + 16 + 11), 2025 context bullets, and deep links to `docs/` on GitHub.
 
 - **Desktop:** fixed **left sidebar** with a scrollable section list; items smooth-scroll into view and **highlight** via scroll-spy.
 - **Mobile:** horizontal **chip** nav under the header.
@@ -48,10 +48,10 @@ npm start       # serve production build
 | Route | Content |
 |-------|---------|
 | `/` | Landing, daily rhythm, links |
-| `/curriculum/standard` · `/curriculum/advanced` | Overview, 7 days, post-week |
+| `/curriculum/standard` · `/advanced` · `/imports` | Overview, 7 days, post-week |
 | `/curriculum/{track}/day/1` … `7` | Objectives, exercises, deliverables |
 | `/prompts` | Hub |
-| `/prompts/standard` · `/prompts/advanced` | Copy-paste libraries + disclaimers on copy |
+| `/prompts/standard` · `/advanced` · `/imports` | Copy-paste libraries + disclaimers on copy |
 | `/context-2025` | Consolidated context bullets |
 | `/post-week` | Cohort follow-on actions |
 

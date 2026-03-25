@@ -1,17 +1,16 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import { getCurriculum, getDay, isTrack } from "@/lib/curriculum";
+import { getDay, isTrack } from "@/lib/curriculum";
+import { curriculumBreadcrumbLabel } from "@/lib/track-ui";
 import type { CurriculumTrack } from "@/lib/types";
 
 type Props = { params: Promise<{ track: string; day: string }> };
 
 export function generateStaticParams() {
   const days = [1, 2, 3, 4, 5, 6, 7];
-  return [
-    ...days.map((day) => ({ track: "standard" as const, day: String(day) })),
-    ...days.map((day) => ({ track: "advanced" as const, day: String(day) })),
-  ];
+  const tracks = ["standard", "advanced", "imports"] as const;
+  return tracks.flatMap((track) => days.map((day) => ({ track, day: String(day) })));
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -53,7 +52,7 @@ export default async function DayPage({ params }: Props) {
         </Link>
         <span>·</span>
         <Link href={`/curriculum/${track}`} className="transition hover:text-white">
-          {track === "advanced" ? "Advanced" : "Standard"} curriculum
+          {curriculumBreadcrumbLabel(track)} curriculum
         </Link>
       </div>
 

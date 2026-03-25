@@ -1,30 +1,50 @@
 import { notFound } from "next/navigation";
 
 import { CopyButton } from "@/components/copy-button";
-import { PROMPT_SUFFIX_ADVANCED, PROMPT_SUFFIX_STANDARD } from "@/lib/disclaimer";
+import {
+  PROMPT_SUFFIX_ADVANCED,
+  PROMPT_SUFFIX_IMPORTS,
+  PROMPT_SUFFIX_STANDARD,
+} from "@/lib/disclaimer";
 import { ADVANCED_PROMPTS } from "@/lib/prompts-advanced";
+import { IMPORTS_PROMPTS } from "@/lib/prompts-imports";
 import { STANDARD_PROMPTS } from "@/lib/prompts-standard";
 import { isTrack } from "@/lib/curriculum";
 import type { CurriculumTrack } from "@/lib/types";
 
 type Props = { params: Promise<{ track: string }> };
 
+const LIBRARY_TITLE: Record<CurriculumTrack, string> = {
+  standard: "Standard",
+  advanced: "Advanced",
+  imports: "Import mastery",
+};
+
+function getLibrary(track: CurriculumTrack) {
+  if (track === "advanced") {
+    return { items: ADVANCED_PROMPTS, suffix: PROMPT_SUFFIX_ADVANCED };
+  }
+  if (track === "imports") {
+    return { items: IMPORTS_PROMPTS, suffix: PROMPT_SUFFIX_IMPORTS };
+  }
+  return { items: STANDARD_PROMPTS, suffix: PROMPT_SUFFIX_STANDARD };
+}
+
 export function generateStaticParams() {
-  return [{ track: "standard" }, { track: "advanced" }];
+  return [{ track: "standard" }, { track: "advanced" }, { track: "imports" }];
 }
 
 export async function generateMetadata({ params }: Props) {
   const { track: raw } = await params;
   if (!isTrack(raw)) return { title: "Not found" };
-  return { title: raw === "advanced" ? "Advanced prompts" : "Standard prompts" };
+  return { title: `${LIBRARY_TITLE[raw]} prompts` };
 }
 
 export default async function PromptsTrackPage({ params }: Props) {
   const { track: raw } = await params;
   if (!isTrack(raw)) notFound();
   const track: CurriculumTrack = raw;
-  const items = track === "advanced" ? ADVANCED_PROMPTS : STANDARD_PROMPTS;
-  const suffix = track === "advanced" ? PROMPT_SUFFIX_ADVANCED : PROMPT_SUFFIX_STANDARD;
+  const { items, suffix } = getLibrary(track);
 
   const fullTextAll = items
     .map((p) => `## ${p.id}. ${p.label}\n${p.body}\n\n${suffix}`)
@@ -33,7 +53,7 @@ export default async function PromptsTrackPage({ params }: Props) {
   return (
     <main className="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
       <h1 className="text-2xl font-semibold text-white sm:text-3xl">
-        {track === "advanced" ? "Advanced" : "Standard"} prompt library
+        {LIBRARY_TITLE[track]} prompt library
       </h1>
       <p className="mt-3 text-sm text-zinc-400">
         {items.length} prompts · Disclosure appended on each copy
