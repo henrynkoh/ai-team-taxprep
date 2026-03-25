@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { PracticalGuide } from "@/components/curriculum/PracticalGuide";
 import { getDay, isTrack } from "@/lib/curriculum";
+import { PROMPT_SUFFIX_ADVANCED_DAY1_WAGES } from "@/lib/disclaimer";
 import { curriculumBreadcrumbLabel } from "@/lib/track-ui";
 import type { CurriculumTrack } from "@/lib/types";
 
@@ -69,6 +71,10 @@ export default async function DayPage({ params }: Props) {
         <List title="Exercises" items={day.exercises} />
         <List title="Deliverables" items={day.deliverables} />
       </div>
+
+      {day.practicalGuide ? (
+        <PracticalGuide guide={day.practicalGuide} promptSuffix={PROMPT_SUFFIX_ADVANCED_DAY1_WAGES} />
+      ) : null}
 
       <nav className="mt-10 flex flex-wrap justify-between gap-4 text-sm">
         {day.day > 1 ? (

@@ -79,6 +79,8 @@ seattle-tax-curriculum/
 
 To **edit curriculum text**, change the `.ts` files above and redeploy. There is no CMS.
 
+**Advanced Day 1** includes an optional `practicalGuide` on `CurriculumDay`: full TurboTax Desktop walkthrough, time budget, Seattle tips, and **eight** copy-paste prompts with suffix `PROMPT_SUFFIX_ADVANCED_DAY1_WAGES` (see `src/lib/advanced-day1-practical.ts`). The day page renders this block below objectives / exercises / deliverables.
+
 ---
 
 ## 5. Components

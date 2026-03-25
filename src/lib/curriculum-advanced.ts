@@ -1,3 +1,4 @@
+import { ADVANCED_DAY1_PRACTICAL } from "./advanced-day1-practical";
 import type { CurriculumDay } from "./types";
 
 export const ADVANCED_OVERVIEW = {
@@ -36,21 +37,26 @@ export const ADVANCED_OVERVIEW = {
 export const ADVANCED_DAYS: CurriculumDay[] = [
   {
     day: 1,
-    title: "Advanced Sub-Niche Positioning & Optimized TurboTax Desktop Workflow",
-    focus: "Video steps 1–5 — Position as Seattle expert in “OBBBA 100% Bonus + STR Loophole + RSU Offset for Single Filers.”",
+    title: "Wages & Income Imports — W-2 + RSU Foundations (Practical Day 1)",
+    focus:
+      "Video steps 1–5 adapted: TurboTax Desktop 2025/2026 — partnered vs non-partnered W-2 EIN import, 1099-B RSU sales, basis adjustments, Federal Review / Smart Check — setup for later Airbnb/AFH + depreciation.",
     videoSteps: "Steps 1–5",
     dailyHours: "5–7 hours/day",
     objectives: [
-      "Master nuanced workflow mapping with OBBBA elections and TurboTax Desktop gotchas.",
+      "Achieve near-full auto-population of W-2 wages/RSU withholding path and RSU stock sales via imports where possible.",
+      "Master 1099-B basis corrections when vesting income is already on W-2 (avoid double taxation).",
+      "Produce LLM troubleshooting scripts + RSU adjustment checklists; run initial Federal Review for early combo flags.",
     ],
     exercises: [
-      "Analyze 2–3 real (anonymized) complex Seattle single-filer scenarios with mixed income and post-Jan 19, 2025 assets.",
-      "Build advanced workflow in TurboTax Desktop: RSU import/basis → STR Schedule decision (7-day avg. stay) → AFH Schedule E → Form 4562 (100% bonus election vs. 40% option) → single-filer optimizations (brackets, QBI, NIIT).",
-      "Identify high-leverage decision points (bonus election strategy, material participation documentation).",
+      "Execute full Preparation → Part 1 W-2 → Part 2 1099-B lab using anonymized Seattle tech samples (EIN, Box b/d/1, Fidelity/Schwab-style 1099-B).",
+      "Run all eight Day 1 prompts across Claude, ChatGPT, and Gemini; compare outputs and save a team “Day 1 Import Playbook.”",
+      "Document import success/failure modes, screenshots, and Federal Review / Smart Check notes for the full combo return roadmap.",
     ],
     deliverables: [
-      "Advanced workflow diagram (TurboTax screenshots + OBBBA election notes) + prioritized optimization list.",
+      "Documented import success rates + LLM-generated RSU adjustment checklist + screenshots (imports, basis fixes, Review flags).",
+      "Shared Day 1 playbook entry with best prompt outputs (updated weekly as TurboTax patches release).",
     ],
+    practicalGuide: ADVANCED_DAY1_PRACTICAL,
   },
   {
     day: 2,
