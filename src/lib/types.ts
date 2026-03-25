@@ -16,10 +16,15 @@ export type PracticalGuideBlock = {
   ordered?: boolean;
 };
 
+export type PracticalGuidePromptSuffixKind = "advanced" | "advanced-day1-wages" | "imports";
+
 export type DayPracticalGuide = {
   subtitle?: string;
+  /** Which disclaimer string to append when copying day prompts. */
+  promptSuffixKind: PracticalGuidePromptSuffixKind;
   assumptions: string[];
   timeBreakdown: { label: string; time: string }[];
+  /** First three blocks render, then LLM section, then remaining blocks (same pattern as Day 1). */
   blocks: PracticalGuideBlock[];
   llmSection: { heading: string; duration?: string; paragraphs: string[] };
   closingParagraph: string;

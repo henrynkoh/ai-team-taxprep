@@ -1,4 +1,12 @@
 import { ADVANCED_DAY1_PRACTICAL } from "./advanced-day1-practical";
+import {
+  ADVANCED_DAY2_PRACTICAL,
+  ADVANCED_DAY3_PRACTICAL,
+  ADVANCED_DAY4_PRACTICAL,
+  ADVANCED_DAY5_PRACTICAL,
+  ADVANCED_DAY6_PRACTICAL,
+  ADVANCED_DAY7_PRACTICAL,
+} from "./advanced-practical-days-2-7";
 import type { CurriculumDay } from "./types";
 
 export const ADVANCED_OVERVIEW = {
@@ -75,6 +83,7 @@ export const ADVANCED_DAYS: CurriculumDay[] = [
     deliverables: [
       "Refined 7-day advanced content calendar + 3 published posts + lead magnet draft.",
     ],
+    practicalGuide: ADVANCED_DAY2_PRACTICAL,
   },
   {
     day: 3,
@@ -93,6 +102,7 @@ export const ADVANCED_DAYS: CurriculumDay[] = [
     deliverables: [
       "Master process document (25+ steps) with screenshots, OBBBA references, risk flags.",
     ],
+    practicalGuide: ADVANCED_DAY3_PRACTICAL,
   },
   {
     day: 4,
@@ -111,6 +121,7 @@ export const ADVANCED_DAYS: CurriculumDay[] = [
     deliverables: [
       "Advanced prompt library (expanded) + orchestration diagram + tested optimization examples.",
     ],
+    practicalGuide: ADVANCED_DAY4_PRACTICAL,
   },
   {
     day: 5,
@@ -129,6 +140,7 @@ export const ADVANCED_DAYS: CurriculumDay[] = [
     deliverables: [
       "Premium onboarding kit + proof dashboard template + pricing framework.",
     ],
+    practicalGuide: ADVANCED_DAY5_PRACTICAL,
   },
   {
     day: 6,
@@ -147,6 +159,7 @@ export const ADVANCED_DAYS: CurriculumDay[] = [
     deliverables: [
       "Multi-year roadmap + 2 polished case studies + updated content plan with proof.",
     ],
+    practicalGuide: ADVANCED_DAY6_PRACTICAL,
   },
   {
     day: 7,
@@ -165,6 +178,7 @@ export const ADVANCED_DAYS: CurriculumDay[] = [
     deliverables: [
       "90-day scaling plan + vision deck + complete advanced prompt library.",
     ],
+    practicalGuide: ADVANCED_DAY7_PRACTICAL,
   },
 ];
 

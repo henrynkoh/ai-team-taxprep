@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 
 import { PracticalGuide } from "@/components/curriculum/PracticalGuide";
 import { getDay, isTrack } from "@/lib/curriculum";
-import { PROMPT_SUFFIX_ADVANCED_DAY1_WAGES } from "@/lib/disclaimer";
+import { promptSuffixForPracticalGuide } from "@/lib/practical-guide-suffix";
 import { curriculumBreadcrumbLabel } from "@/lib/track-ui";
 import type { CurriculumTrack } from "@/lib/types";
 
@@ -73,7 +73,10 @@ export default async function DayPage({ params }: Props) {
       </div>
 
       {day.practicalGuide ? (
-        <PracticalGuide guide={day.practicalGuide} promptSuffix={PROMPT_SUFFIX_ADVANCED_DAY1_WAGES} />
+        <PracticalGuide
+          guide={day.practicalGuide}
+          promptSuffix={promptSuffixForPracticalGuide(day.practicalGuide)}
+        />
       ) : null}
 
       <nav className="mt-10 flex flex-wrap justify-between gap-4 text-sm">

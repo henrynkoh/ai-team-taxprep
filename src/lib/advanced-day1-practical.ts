@@ -52,6 +52,7 @@ export const ADVANCED_DAY1_PROMPTS: PromptItem[] = [
 ];
 
 export const ADVANCED_DAY1_PRACTICAL: DayPracticalGuide = {
+  promptSuffixKind: "advanced-day1-wages",
   subtitle:
     "Practical TurboTax Desktop walkthrough for March 2026 filing season — Wages & Income only (W-2 + RSU foundations). Preparation for later Airbnb/AFH + depreciation work.",
   assumptions: [
